@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrasi Admin</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <h1>Register Admin</h1>
+      <nav>
+        <a href="dashboard_admin.php">Dashboard</a>
+        <a href="dashboard_admin.php">Keluar</a>
+      </nav>
+    </header>
+    <h1>Registrasi Admin Baru</h1>
+    <form action="../controllers/register_admin.php" method="POST">
+      <label for="username">Username:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Masukkan username"
+        required
+      /><br /><br />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Masukkan password"
+        required
+      /><br /><br />
+
+      <button type="submit">Daftarkan Admin</button>
+    </form>
+    <br />
+    <!-- Modal -->
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <p>
+          Pengaduan Anda telah dikirim. Tunggu informasi selanjutnya di email
+          Anda untuk mendapatkan nomor untuk melacak status Anda. Terima kasih!
+        </p>
+        <button id="closeModal">OK</button>
+      </div>
+    </div>
+    <script src="../assets/js/script.js"></script>
+  </body>
+</html>

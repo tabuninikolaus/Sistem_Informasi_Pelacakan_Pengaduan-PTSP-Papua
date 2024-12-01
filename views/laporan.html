@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laporan Pengaduan</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header class="admin-header">
+      <h1>Grafik Trend Laporan Pengaduan</h1>
+      <nav>
+        <a href="dashboard_admin.php">Dashboard</a>
+        <a href="dashboard_admin.php">Keluar</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="chart-container">
+        <canvas id="chart-kategori"></canvas>
+      </section>
+      <section class="chart-container">
+        <canvas id="chart-status"></canvas>
+      </section>
+    </main>
+    <script>
+      fetch("../controllers/get_laporan.php")
+        .then((response) => response.json())
+        .then((data) => {
+          // Data untuk grafik kategori
+          const kategoriLabels = data.kategori.map(
+            (item) => item.kategori_pengaduan
+          );
+          const kategoriValues = data.kategori.map((item) => item.jumlah);
+
+          const ctxKategori = document
+            .getElementById("chart-kategori")
+            .getContext("2d");
+          new Chart(ctxKategori, {
+            type: "bar",
+            data: {
+              labels: kategoriLabels,
+              datasets: [
+                {
+                  label: "Jumlah Pengaduan per Kategori",
+                  data: kategoriValues,
+                  backgroundColor: "rgba(75, 192, 192, 0.2)",
+                  borderColor: "rgba(75, 192, 192, 1)",
+                  borderWidth: 1,
+                },
+              ],
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true,
+                },
+              },
+            },
+          });
+
+          // Data untuk grafik status
+          const statusLabels = data.status.map((item) => item.status);
+          const statusValues = data.status.map((item) => item.jumlah);
+
+          const ctxStatus = document
+            .getElementById("chart-status")
+            .getContext("2d");
+          new Chart(ctxStatus, {
+            type: "pie",
+            data: {
+              labels: statusLabels,
+              datasets: [
+                {
+                  label: "Jumlah Pengaduan per Status",
+                  data: statusValues,
+                  backgroundColor: [
+                    "rgba(255, 99, 132, 0.2)",
+                    "rgba(54, 162, 235, 0.2)",
+                    "rgba(255, 206, 86, 0.2)",
+                  ],
+                  borderColor: [
+                    "rgba(255, 99, 132, 1)",
+                    "rgba(54, 162, 235, 1)",
+                    "rgba(255, 206, 86, 1)",
+                  ],
+                  borderWidth: 1,
+                },
+              ],
+            },
+          });
+        })
+        .catch((error) => console.error("Error:", error));
+    </script>
+  </body>
+</html>

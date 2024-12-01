@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajukan Pengaduan</title>
+    <link rel="stylesheet" href="../assets/css/ajukan_pengaduan.css" />
+  </head>
+  <body>
+    <h1>Ajukan Pengaduan Anda</h1>
+    <form action="../controllers/simpan_pengaduan.php" method="POST">
+      <label for="nama">Nama:</label>
+      <input type="text" id="nama" name="nama" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" />
+
+      <label for="kategori">Kategori Pengaduan:</label>
+      <select id="kategori" name="kategori">
+        <option value="Perizinan">Perizinan</option>
+        <option value="Pelayanan">Pelayanan</option>
+        <option value="Teknis">Teknis</option>
+      </select>
+
+      <label for="deskripsi">Deskripsi:</label>
+      <textarea id="deskripsi" name="deskripsi" required></textarea>
+
+      <button type="submit">Kirim Pengaduan</button>
+    </form>
+    <!-- Modal -->
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <p>
+          Pengaduan Anda telah dikirim. Tunggu informasi selanjutnya di email
+          Anda untuk mendapatkan nomor untuk melacak status Anda. Terima kasih!
+        </p>
+        <button id="closeModal">OK</button>
+      </div>
+    </div>
+
+    <script src="../assets/js/sc.js"></script>
+  </body>
+</html>
